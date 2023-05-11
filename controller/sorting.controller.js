@@ -6,40 +6,107 @@ const maxLength = 100;
 
 
 function inputSorting(req, res, next) {
-    switch (req.query.input) {
+    switch (req.query.input.toLowerCase()) {
         case !req.query.input:
             return 'invalid input'
-        case req.query.input.toLowerString() == 'quit':
+        case 'quit':
+            res.json({
+                message: "success"
+            })
             return
-        case req.query.input.toLowerString() == 'print':
-            return printCommand()
-        case req.query.input.toLowerString() == 'sort':
-            return sortCommand()
-        case req.query.input.toLowerString() == 'average':
-            return averageCommand()
-        case req.query.input.toLowerString() == 'new':
-            return newCommand(req.query.length)
-        case req.query.input.toLowerString() == 'gather':
-            return gatherCommand()
-        case req.query.input.toLowerString() == 'biggies':
-            return biggestCommand()
-        case req.query.input.toLowerString() == 'reverse':
-            return reverseCommand()
-        case req.query.input.toLowerString() == 'push':
-            return pushCommand(req.query.push)
-        case req.query.input.toLowerString() == 'pop':
-            return popCommand()
-        case req.query.input.toLowerString() == 'extreme':
-            return extremesCommand()
-        case req.query.input.toLowerString() == 'medianCommand':
-            return medianCommand()
+        case 'print':
+            printCommand()
+            res.json({
+                message: "success"
+            })
+
+            return
+        case 'sort':
+            sortCommand()
+            res.json({
+                message: "success"
+            })
+
+            return
+        case 'average':
+            averageCommand()
+            res.json({
+                message: "success"
+            })
+            return
+
+        case 'new':
+            newCommand(req.query.length)
+            res.json({
+                message: "success"
+            })
+            return
 
 
+        case 'gather':
+            gatherCommand()
+            res.json({
+                message: "success"
+            })
+            break
 
+        case 'biggies':
+            biggestCommand()
+            res.json({
+                message: "success"
+            })
+            return
+
+
+        case 'reverse':
+            reverseCommand()
+            res.json({
+                message: "success"
+            })
+            return
+
+
+        case 'push':
+            pushCommand(req.query.push)
+            res.json({
+                message: "success"
+            })
+            return
+
+
+        case 'pop':
+            popCommand()
+            res.json({
+                message: "success"
+            })
+            return
+
+
+        case 'extreme':
+            extremesCommand()
+            res.json({
+                message: "success"
+            })
+            return
+
+
+        case 'medianCommand':
+            medianCommand()
+            res.json({
+                message: "success"
+            })
+            return
 
         default:
-            break;
+            res.json({
+                message: "something not right"
+            })
+            return
     }
+
+    res.json({
+        message: "success"
+    })
 }
 
 function printCommand() {
@@ -74,8 +141,8 @@ function averageCommand() {
 
 }
 
-function newCommand(length) {
-    const length = parseInt(length);
+function newCommand(lengthTask) {
+    const length = parseInt(lengthTask);
 
     if (isNaN(length) || length < minLength || length > maxLength) {
         console.log('Invalid length. Nothing was done.');
